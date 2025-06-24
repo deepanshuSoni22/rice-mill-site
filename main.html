@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Shiva Shankara Rice Mill - Billing Software</title>
+    <meta name="description" content="Professional Rice Mill Billing Software for hulling, husk trading, and fodder management with offline capability.">
+    <meta name="keywords" content="Rice Mill Billing Software, Kannada, Hulling, Husk, Fodder, Offline Billing, Shikaripura, Savalanga">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Kannada:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', 'Noto Sans Kannada', sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, 
+                #ff7b00 0%, 
+                #ff9500 25%, 
+                #ffb700 50%, 
+                #ff9500 75%, 
+                #ff7b00 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .indian-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, rgba(255, 140, 0, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px, 60px 60px;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #ff7b00 0%, #ff9500 50%, #ffb700 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 30px rgba(255, 123, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hover-scale {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-scale:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 123, 0, 0.15);
+        }
+        
+        .slide-up {
+            animation: slideUp 1s ease-out;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in-delayed {
+            animation: fadeInDelayed 1.5s ease-out;
+        }
+        @keyframes fadeInDelayed {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .border-indian {
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #ff7b00, #ffb700, #ff7b00) 1;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff7b00 0%, #ff9500 100%);
+            box-shadow: 0 8px 25px rgba(255, 123, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 123, 0, 0.4);
+        }
+        
+        .text-primary { color: #ff7b00; }
+        .text-secondary { color: #ff9500; }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 640px) {
+            .hero-bg h1 {
+                font-size: 1.5rem;
+                line-height: 1.3;
+            }
+            .hero-bg h2 {
+                font-size: 1.25rem;
+                line-height: 1.3;
+            }
+            .hero-bg h3 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            .hero-bg p {
+                font-size: 1rem;
+            }
+            .floating {
+                animation: none; /* Disable animation on mobile for performance */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-shadow {
+                margin-bottom: 1rem;
+            }
+            .border-indian {
+                border: 1px solid #ff7b00;
+                border-image: none;
+            }
+        }
+
+        /* Improve button responsiveness */
+        .btn-responsive {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .btn-responsive {
+                padding: 1.25rem 2.5rem;
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-amber-50 to-orange-100 min-h-screen">
+    <!-- Language Toggle -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="langToggle" class="bg-white/90 backdrop-blur-sm shadow-lg rounded-full px-4 py-2 sm:px-6 sm:py-3 text-sm font-medium text-gray-700 hover:bg-white transition-all border border-orange-200">
+            <i class="fas fa-globe mr-2 text-orange-500"></i>
+            <span id="langText">ಕನ್ನಡ</span>
+        </button>
+    </div>
+
+    <!-- Hero Section with Header -->
+    <section class="hero-bg min-h-screen flex flex-col relative">
+        <!-- Header -->
+        <header class="relative z-10 py-4 sm:py-8 px-4">
+            <div class="container mx-auto">
+                <div class="flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <div class="flex flex-col sm:flex-row items-center justify-center mb-4">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 sm:mb-0 sm:mr-4 floating">
+                                <i class="fas fa-seedling text-2xl sm:text-3xl text-white"></i>
+                            </div>
+                            <div class="text-center sm:text-left">
+                                <h1 class="text-lg sm:text-2xl md:text-4xl font-bold text-shadow mb-2 leading-tight" data-en="SHREE MARULASIDDESHWARA PRASANNA" data-kn="ಶ್ರೀ ಮಾರುಲಸಿದ್ದೇಶ್ವರ ಪ್ರಸನ್ನ">SHREE MARULASIDDESHWARA PRASANNA</h1>
+                                <h2 class="text-base sm:text-xl md:text-3xl font-bold text-shadow" data-en="SHREE SHIVA SHANKARA RICE MILL" data-kn="ಶ್ರೀ ಶಿವ ಶಂಕರ ರೈಸ್ ಮಿಲ್">SHREE SHIVA SHANKARA RICE MILL</h2>
+                            </div>
+                        </div>
+                        <p class="text-sm sm:text-lg opacity-90 text-shadow" data-en="SHIKARIPURA ROAD, SAVALANGA" data-kn="ಶಿಕಾರಿಪುರ ರಸ್ತೆ, ಸಾವಳಂಗ">SHIKARIPURA ROAD, SAVALANGA</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Content -->
+        <div class="flex-1 flex items-center justify-center px-4 relative z-10">
+            <div class="container mx-auto text-center">
+                <div class="max-w-5xl mx-auto slide-up">
+                    <h3 class="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-6 sm:mb-8 text-shadow leading-tight" data-en="Professional Rice Mill Billing Software" data-kn="ವೃತ್ತಿಪರ ರೈಸ್ ಮಿಲ್ ಬಿಲ್ಲಿಂಗ್ ಸಾಫ್ಟ್‌ವೇರ್">Professional Rice Mill<br>Billing Software</h3>
+                    <p class="text-base sm:text-xl md:text-2xl text-white/90 mb-8 sm:mb-12 leading-relaxed font-light px-4" data-en="Complete solution for hulling, husk trading, and fodder management with offline capabilities" data-kn="ಆಫ್‌ಲೈನ್ ವೈಶಿಷ್ಟ್ಯಗಳೊಂದಿಗೆ ಹಲ್ಲಿಂಗ್, ಹುಸ್ಕ್ ಟ್ರೇಡಿಂಗ್ ಮತ್ತು ಫೋಡರ್ ನಿರ್ವಹಣೆಗೆ ಸಂಪೂರ್ಣ ಪರಿಹಾರ">Complete solution for hulling, husk trading, and fodder management<br class="hidden sm:block">with offline capabilities</p>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center fade-in-delayed px-4">
+                        <a href="/downloads/rice-mill-software.exe" download class="btn-primary text-white btn-responsive rounded-2xl font-semibold hover-scale w-full sm:w-auto inline-flex items-center justify-center">
+                            <i class="fas fa-download mr-3"></i>
+                            <span data-en="Download Now" data-kn="ಈಗ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ">Download Now</span>
+                        </a>                        
+                        <button id="demoBtn" class="bg-white/20 backdrop-blur-sm text-white border-2 border-white/50 btn-responsive rounded-2xl font-semibold hover:bg-white/30 transition-all w-full sm:w-auto">
+                            <i class="fas fa-play mr-3"></i>
+                            <span data-en="Watch Demo" data-kn="ಡೆಮೋ ವೀಕ್ಷಿಸಿ">Watch Demo</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/70 animate-bounce hidden sm:block">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-12 sm:py-20 px-4 bg-white indian-pattern">
+        <div class="container mx-auto">
+            <div class="text-center mb-12 sm:mb-16">
+                <h4 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6" data-en="Key Features" data-kn="ಮುಖ್ಯ ವೈಶಿಷ್ಟ್ಯಗಳು">Key Features</h4>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4" data-en="Comprehensive tools designed specifically for rice mill operations" data-kn="ರೈಸ್ ಮಿಲ್ ಕಾರ್ಯಾಚರಣೆಗಳಿಗಾಗಿ ವಿಶೇಷವಾಗಿ ವಿನ್ಯಾಸಗೊಳಿಸಲಾದ ಸಮಗ್ರ ಸಾಧನಗಳು">Comprehensive tools designed specifically for rice mill operations</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Hulling Process -->
+                <div class="bg-gradient-to-br from-orange-50 to-red-50 p-6 sm:p-8 rounded-3xl card-shadow hover-scale border-indian">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 gradient-bg rounded-full flex items-center justify-center mb-4 sm:mb-6 mx-auto floating">
+                        <i class="fas fa-cogs text-white text-2xl sm:text-3xl"></i>
+                    </div>
+                    <h5 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 text-center" data-en="Hulling Process" data-kn="ಹಲ್ಲಿಂಗ್ ಪ್ರಕ್ರಿಯೆ">Hulling Process</h5>
+                    <p class="text-gray-600 text-center leading-relaxed text-sm sm:text-base" data-en="Automated billing at ₹1.70/kg with special rates for 90-100kg bags" data-kn="90-100 ಕೆಜಿ ಚೀಲಗಳಿಗೆ ವಿಶೇಷ ದರಗಳೊಂದಿಗೆ ₹1.70/ಕೆಜಿ ನಲ್ಲಿ ಸ್ವಯಂಚಾಲಿತ ಬಿಲ್ಲಿಂಗ್">Automated billing at ₹1.70/kg with special rates for 90-100kg bags</p>
+                </div>
+
+                <!-- Husk Trading -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 sm:p-8 rounded-3xl card-shadow hover-scale border-indian">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mb-4 sm:mb-6 mx-auto floating" style="animation-delay: 0.5s;">
+                        <i class="fas fa-leaf text-white text-2xl sm:text-3xl"></i>
+                    </div>
+                    <h5 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 text-center" data-en="Husk Trading" data-kn="ಹುಸ್ಕ್ ಟ್ರೇಡಿಂಗ್">Husk Trading</h5>
+                    <p class="text-gray-600 text-center leading-relaxed text-sm sm:text-base" data-en="Sell husk at ₹5/kg with instant billing calculation" data-kn="ತತ್ಕ್ಷಣದ ಬಿಲ್ಲಿಂಗ್ ಲೆಕ್ಕಾಚಾರದೊಂದಿಗೆ ₹5/ಕೆಜಿ ಗೆ ಹುಸ್ಕ್ ಮಾರಾಟ">Sell husk at ₹5/kg with instant billing calculation</p>
+                </div>
+
+                <!-- Fodder Management -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 sm:p-8 rounded-3xl card-shadow hover-scale border-indian">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-full flex items-center justify-center mb-4 sm:mb-6 mx-auto floating" style="animation-delay: 1s;">
+                        <i class="fas fa-seedling text-white text-2xl sm:text-3xl"></i>
+                    </div>
+                    <h5 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 text-center" data-en="Fodder Management" data-kn="ಫೋಡರ್ ನಿರ್ವಹಣೆ">Fodder Management</h5>
+                    <p class="text-gray-600 text-center leading-relaxed text-sm sm:text-base" data-en="Buy at ₹14/kg, sell at ₹24/kg with weighing scale integration" data-kn="ತೂಕದ ಯಂತ್ರದ ಏಕೀಕರಣದೊಂದಿಗೆ ₹14/ಕೆಜಿ ಗೆ ಖರೀದಿ, ₹24/ಕೆಜಿ ಗೆ ಮಾರಾಟ">Buy at ₹14/kg, sell at ₹24/kg with weighing scale integration</p>
+                </div>
+
+                <!-- Offline Capability -->
+                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-6 sm:p-8 rounded-3xl card-shadow hover-scale border-indian">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center mb-4 sm:mb-6 mx-auto floating" style="animation-delay: 1.5s;">
+                        <i class="fas fa-wifi text-white text-2xl sm:text-3xl"></i>
+                    </div>
+                    <h5 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 text-center" data-en="Offline Ready" data-kn="ಆಫ್‌ಲೈನ್ ಸಿದ್ಧ">Offline Ready</h5>
+                    <p class="text-gray-600 text-center leading-relaxed text-sm sm:text-base" data-en="Works without internet connection for remote locations" data-kn="ದೂರದ ಸ್ಥಳಗಳಿಗೆ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವಿಲ್ಲದೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ">Works without internet connection for remote locations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Details -->
+    <section class="py-12 sm:py-16 px-4 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div class="container mx-auto">
+            <h4 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-12" data-en="Service Rates" data-kn="ಸೇವಾ ದರಗಳು">Service Rates</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-amber-600 mb-2">₹1.70</div>
+                    <div class="text-gray-600 text-sm sm:text-base" data-en="Per KG Hulling" data-kn="ಪ್ರತಿ ಕೆಜಿ ಹಲ್ಲಿಂಗ್">Per KG Hulling</div>
+                    <div class="text-xs sm:text-sm text-gray-500 mt-1" data-en="(₹180 for 90-100kg)" data-kn="(90-100ಕೆಜಿಗೆ ₹180)">(₹180 for 90-100kg)</div>
+                </div>
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-green-600 mb-2">₹5</div>
+                    <div class="text-gray-600 text-sm sm:text-base" data-en="Per KG Husk" data-kn="ಪ್ರತಿ ಕೆಜಿ ಹುಸ್ಕ್">Per KG Husk</div>
+                    <div class="text-xs sm:text-sm text-gray-500 mt-1" data-en="Selling Rate" data-kn="ಮಾರಾಟ ದರ">Selling Rate</div>
+                </div>
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">₹14</div>
+                    <div class="text-gray-600 text-sm sm:text-base" data-en="Per KG Fodder" data-kn="ಪ್ರತಿ ಕೆಜಿ ಫೋಡರ್">Per KG Fodder</div>
+                    <div class="text-xs sm:text-sm text-gray-500 mt-1" data-en="Purchase Rate" data-kn="ಖರೀದಿ ದರ">Purchase Rate</div>
+                </div>
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-purple-600 mb-2">₹24</div>
+                    <div class="text-gray-600 text-sm sm:text-base" data-en="Per KG Fodder" data-kn="ಪ್ರತಿ ಕೆಜಿ ಫೋಡರ್">Per KG Fodder</div>
+                    <div class="text-xs sm:text-sm text-gray-500 mt-1" data-en="Selling Rate" data-kn="ಮಾರಾಟ ದರ">Selling Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Features -->
+    <section class="py-12 sm:py-16 px-4 bg-white">
+        <div class="container mx-auto">
+            <h4 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-12" data-en="Software Capabilities" data-kn="ಸಾಫ್ಟ್‌ವೇರ್ ಸಾಮರ್ಥ್ಯಗಳು">Software Capabilities</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 gradient-bg rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-calculator text-white text-2xl sm:text-3xl"></i>
+                    </div>
+                    <h5 class="text-lg sm:text-xl font-semibold mb-3" data-en="Automatic Calculations" data-kn="ಸ್ವಯಂಚಾಲಿತ ಲೆಕ್ಕಾಚಾರಗಳು">Automatic Calculations</h5>
+                    <p class="text-gray-600 text-sm sm:text-base" data-en="Instant billing based on weight and service type with built-in rate logic" data-kn="ಅಂತರ್ನಿರ್ಮಿತ ದರ ತರ್ಕದೊಂದಿಗೆ ತೂಕ ಮತ್ತು ಸೇವೆಯ ಪ್ರಕಾರದ ಆಧಾರದ ಮೇಲೆ ತತ್ಕ್ಷಣದ ಬಿಲ್ಲಿಂಗ್">Instant billing based on weight and service type with built-in rate logic</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 gradient-bg rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-chart-bar text-white text-2xl sm:text-3xl"></i>
+                    </div>
+                    <h5 class="text-lg sm:text-xl font-semibold mb-3" data-en="Comprehensive Reports" data-kn="ಸಮಗ್ರ ವರದಿಗಳು">Comprehensive Reports</h5>
+                    <p class="text-gray-600 text-sm sm:text-base" data-en="Daily, weekly, and monthly reports for complete business insights" data-kn="ಸಂಪೂರ್ಣ ವ್ಯಾಪಾರದ ಒಳನೋಟಗಳಿಗಾಗಿ ದೈನಂದಿನ, ಸಾಪ್ತಾಹಿಕ ಮತ್ತು ಮಾಸಿಕ ವರದಿಗಳು">Daily, weekly, and monthly reports for complete business insights</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 gradient-bg rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-user-cog text-white text-2xl sm:text-3xl"></i>
+                    </div>
+                    <h5 class="text-lg sm:text-xl font-semibold mb-3" data-en="Admin Controls" data-kn="ಅಡ್ಮಿನ್ ನಿಯಂತ್ರಣಗಳು">Admin Controls</h5>
+                    <p class="text-gray-600 text-sm sm:text-base" data-en="Full admin access to modify base prices and system settings" data-kn="ಮೂಲ ಬೆಲೆಗಳು ಮತ್ತು ಸಿಸ್ಟಂ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಮಾರ್ಪಡಿಸಲು ಪೂರ್ಣ ಅಡ್ಮಿನ್ ಪ್ರವೇಶ">Full admin access to modify base prices and system settings</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="py-12 sm:py-16 px-4 gradient-bg">
+        <div class="container mx-auto text-center text-white">
+        <h4 class="text-3xl sm:text-4xl font-bold mb-6" data-en="Download Software" data-kn="ಸಾಫ್ಟ್‌ವೇರ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ">Download Software</h4>
+        <p class="mb-8 text-lg max-w-2xl mx-auto" data-en="Get started with our offline-ready rice mill billing software." data-kn="ನಮ್ಮ ಆಫ್‌ಲೈನ್-ತಯಾರಾದ ರೈಸ್ ಮಿಲ್ ಬಿಲ್ಲಿಂಗ್ ಸಾಫ್ಟ್‌ವೇರ್‌ನೊಂದಿಗೆ ಪ್ರಾರಂಭಿಸಿ.">Get started with our offline-ready rice mill billing software.</p>
+        <a href="/downloads/rice-mill-software.exe" download class="btn-primary btn-responsive inline-block rounded-2xl font-semibold hover-scale">
+            <i class="fas fa-download mr-3"></i>
+            <span data-en="Download EXE" data-kn="EXE ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ">Download EXE</span>
+        </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white text-center text-gray-600 py-6 text-sm">
+        <p data-en="© 2025 Shree Shiva Shankara Rice Mill. All rights reserved." data-kn="© 2025 ಶ್ರೀ ಶಿವ ಶಂಕರ ರೈಸ್ ಮಿಲ್. ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.">
+        © 2025 Shree Shiva Shankara Rice Mill. All rights reserved.
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script>
+        document.getElementById('langToggle').addEventListener('click', function () {
+        const elements = document.querySelectorAll('[data-en]');
+        const langText = document.getElementById('langText');
+        const isEnglish = langText.textContent.trim() === 'ಕನ್ನಡ';
+
+        elements.forEach(el => {
+            el.textContent = isEnglish ? el.dataset.kn : el.dataset.en;
+        });
+
+        langText.textContent = isEnglish ? 'English' : 'ಕನ್ನಡ';
+        });
+    </script>
+</body>
+</html>
